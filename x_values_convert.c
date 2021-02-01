@@ -232,7 +232,7 @@ void	vValuesStoreF64_Xxx(double f64Val, p32_t p32Pntr, varform_t VarForm, varsiz
 }
 
 x32_t	xValuesFetchXxx_X32(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
-	IF_myASSERT(debugPARAM, INRANGE_SRAM(p32Pntr.pu32) && INRANGE(vs08B, VarSize, vs32B, varsize_t)) ;
+	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(p32Pntr.pu32) && INRANGE(vs08B, VarSize, vs32B, varsize_t)) ;
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x32_t x32Val = { 0 } ;
 	switch(VarSize) {
@@ -263,7 +263,7 @@ x32_t	xValuesFetchXxx_X32(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
 }
 
 x64_t	xValuesFetchXxx_X64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
- 	IF_myASSERT(debugPARAM, INRANGE_SRAM(p32Pntr.pu32) && (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
+ 	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(p32Pntr.pu32) && (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x64_t	x64Val  = { 0 } ;
 	switch(VarSize) {
 	case vs08B:
