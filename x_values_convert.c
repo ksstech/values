@@ -117,16 +117,16 @@ x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, varform_t VarForm, varsize_t VarSize) 
 	switch(VarForm) {
 	case vfUXX:
 		switch(VarSize) {
-		case vs08B:			x64Var.u64 = x32Var.u8[0] ;			break ;
-		case vs16B:			x64Var.u64 = x32Var.u16[0] ;		break ;
+		case vs08B:			x64Var.u64 = x32Var.x8[0].u8 ;		break ;
+		case vs16B:			x64Var.u64 = x32Var.x16[0].u16 ;	break ;
 		case vs32B:			x64Var.u64 = x32Var.u32 ;			break ;
 		default:			IF_myASSERT(debugPARAM, 0) ;
 		}
 		break ;
 	case vfIXX:
 		switch(VarSize) {
-		case vs08B:			x64Var.i64 = x32Var.i8[0] ;			break ;
-		case vs16B:			x64Var.i64 = x32Var.i16[0] ;		break ;
+		case vs08B:			x64Var.i64 = x32Var.x8[0].i8 ;		break ;
+		case vs16B:			x64Var.i64 = x32Var.x16[0].i16 ;	break ;
 		case vs32B:			x64Var.i64 = x32Var.i32 ;			break ;
 		default:			IF_myASSERT(debugPARAM, 0) ;
 		}
@@ -336,24 +336,24 @@ x64_t	xValuesScaleX64(x64_t x64Val, varform_t VarForm, varsize_t VarSize) {
 	if (VarSize == vs64B) {
 		x64Res = x64Val ;
 	} else if (VarForm == vfFXX) {
-		x64Res.f32[0]	= x64Val.f64 ;
+		x64Res.x32[0].f32	= x64Val.f64 ;
 	} else if (VarForm == vfUXX) {
 		switch (VarSize) {
-		case vs08B:		x64Res.u8[0]	= x64Val.u64 % (1ULL << 8) ;			break ;
-		case vs16B:		x64Res.u16[0]	= x64Val.u64 % (1ULL << 16) ;			break ;
-		case vs32B:		x64Res.u32[0]	= x64Val.u64 % (1ULL << 32) ;			break ;
+		case vs08B:		x64Res.x8[0].u8	  = x64Val.u64 % (1ULL << 8) ;			break ;
+		case vs16B:		x64Res.x16[0].u16 = x64Val.u64 % (1ULL << 16) ;			break ;
+		case vs32B:		x64Res.x32[0].u32 = x64Val.u64 % (1ULL << 32) ;			break ;
 		default:		IF_myASSERT(debugPARAM, 0) ;
 		}
 	} else if (VarForm == vfIXX) {
 		switch (VarSize) {
 		case vs08B:
-			x64Res.i8[0]	= INRANGE(-128, x64Val.i64, 127, int64_t) ? x64Val.i64 : x64Val.i64 > 0LL ? x64Val.i64 % 127 : x64Val.i64 % 128 ;
+			x64Res.x8[0].i8	= INRANGE(-128, x64Val.i64, 127, int64_t) ? x64Val.i64 : x64Val.i64 > 0LL ? x64Val.i64 % 127 : x64Val.i64 % 128 ;
 			break ;
 		case vs16B:
-			x64Res.i16[0]	= INRANGE(-32768, x64Val.i64, 32767, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 32767 : x64Val.i64 % 32768 ;
+			x64Res.x16[0].i16	= INRANGE(-32768, x64Val.i64, 32767, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 32767 : x64Val.i64 % 32768 ;
 			break ;
 		case vs32B:
-			x64Res.i32[0]	= INRANGE(-2147483648, x64Val.i64, 2147483647, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 2147483647 : x64Val.i64 % 2147483648 ;
+			x64Res.x32[0].i32	= INRANGE(-2147483648, x64Val.i64, 2147483647, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 2147483647 : x64Val.i64 % 2147483648 ;
 			break ;
 		default:
 			IF_myASSERT(debugPARAM, 0) ;
