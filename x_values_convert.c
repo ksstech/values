@@ -27,7 +27,6 @@
 #include	"syslog.h"
 
 #include	"hal_config.h"
-#include	"hal_debug.h"
 
 #define	debugFLAG					0xC000
 
