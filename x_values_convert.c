@@ -314,7 +314,7 @@ double	dValuesFetchXxx_F64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) 
 void	vValuesReportXxx(const char * pMess, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
 	x64_t	x64Val = xValuesFetchXxx_X64(p32Pntr, VarForm, VarSize) ;
 	pMess = pMess == NULL ? "" : pMess ;
-	PRINT(" %s %s %s ", pMess, vsName[VarSize], vfName[VarForm]) ;
+	PRINT(" %s %s %s ", pMess, cvSizeName[VarSize], cvFormName[VarForm]) ;
 	switch(VarForm) {
 	case vfUXX:			PRINT("%'llu ", x64Val.u64) ;	break ;
 	case vfIXX:			PRINT("%'lli ", x64Val.i64) ;	break ;
