@@ -1,21 +1,5 @@
 /*
- * Copyright 2014-18 Andre M Maree / KSS Technologies (Pty) Ltd.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
- * and associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
- * BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
+ * Copyright 2014-21 Andre M. Maree / KSS Technologies (Pty) Ltd.
  */
 
 /*
@@ -25,8 +9,6 @@
 #pragma once
 
 #include	"x_complex_vars.h"
-
-#include	<stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,12 +29,12 @@ void	ValueConvertUnitTest(void) ;
 
 x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, varform_t VarForm, varsize_t VarSize) ;
 x64_t	xValuesUpscaleX32_X64(x32_t x32Var, varform_t VarForm) ;
-void	vValuesStoreX64_Xxx(x64_t x64Val, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
-void	vValuesStoreF64_Xxx(double f64Val, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
-x32_t	xValuesFetchXxx_X32(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
-x64_t	xValuesFetchXxx_X64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
-double	dValuesFetchXxx_F64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
-void	vValuesReportXxx(const char * pMess, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) ;
+void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, varform_t VarForm, varsize_t VarSize) ;
+void	vValuesStoreF64_Xxx(double f64Val, px_t px, varform_t VarForm, varsize_t VarSize) ;
+x32_t	xValuesFetchXxx_X32(px_t px, varform_t VarForm, varsize_t VarSize) ;
+x64_t	xValuesFetchXxx_X64(px_t px, varform_t VarForm, varsize_t VarSize) ;
+double	dValuesFetchXxx_F64(px_t px, varform_t VarForm, varsize_t VarSize) ;
+void	vValuesReportXxx(const char * pMess, px_t px, varform_t VarForm, varsize_t VarSize) ;
 x64_t	xValuesScaleX64(x64_t x64Val, varform_t VarForm, varsize_t VarSize) ;
 
 #ifdef __cplusplus

@@ -162,98 +162,98 @@ bool	xValuesVerifyForm_Size(varform_t VarForm, varsize_t VarSize) {
 	return (VarForm == vfFXX && (VarSize == vs08B || VarSize == vs16B)) ? false : true ;
 }
 
-void	vValuesStoreX64_Xxx(x64_t x64Val, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
+void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, varform_t VarForm, varsize_t VarSize) {
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	switch(VarSize) {
 	case vs08B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu8	= x64Val.u64 ;
+			*px.pu8	= x64Val.u64 ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi8	= x64Val.i64 ;
+			*px.pi8	= x64Val.i64 ;
 		break ;
 	case vs16B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu16	= x64Val.u64 ;
+			*px.pu16	= x64Val.u64 ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi16	= x64Val.i64 ;
+			*px.pi16	= x64Val.i64 ;
 		break ;
 	case vs32B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu32	= x64Val.u64 ;
+			*px.pu32	= x64Val.u64 ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi32	= x64Val.i64 ;
+			*px.pi32	= x64Val.i64 ;
 		else if (VarForm == vfFXX)
-			*p32Pntr.pf32	= x64Val.f64 ;
+			*px.pf32	= x64Val.f64 ;
 		break ;
 	case vs64B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu64	= x64Val.u64 ;
+			*px.pu64	= x64Val.u64 ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi64	= x64Val.i64 ;
+			*px.pi64	= x64Val.i64 ;
 		else if (VarForm == vfFXX)
-			*p32Pntr.pf64	= x64Val.f64 ;
+			*px.pf64	= x64Val.f64 ;
 		break ;
 	}
 }
 
-void	vValuesStoreF64_Xxx(double f64Val, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
+void	vValuesStoreF64_Xxx(double f64Val, px_t px, varform_t VarForm, varsize_t VarSize) {
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	switch(VarSize) {
 	case vs08B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu8	= f64Val ;
+			*px.pu8	= f64Val ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi8	= f64Val ;
+			*px.pi8	= f64Val ;
 		break ;
 	case vs16B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu16	= f64Val ;
+			*px.pu16	= f64Val ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi16	= f64Val ;
+			*px.pi16	= f64Val ;
 		break ;
 	case vs32B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu32	= f64Val ;
+			*px.pu32	= f64Val ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi32	= f64Val ;
+			*px.pi32	= f64Val ;
 		else if (VarForm == vfFXX)
-			*p32Pntr.pf32	= f64Val ;
+			*px.pf32	= f64Val ;
 		break ;
 	case vs64B:
 		if (VarForm == vfUXX)
-			*p32Pntr.pu64	= f64Val ;
+			*px.pu64	= f64Val ;
 		else if (VarForm == vfIXX)
-			*p32Pntr.pi64	= f64Val ;
+			*px.pi64	= f64Val ;
 		else if (VarForm == vfFXX)
-			*p32Pntr.pf64	= f64Val ;
+			*px.pf64	= f64Val ;
 		break ;
 	}
 }
 
-x32_t	xValuesFetchXxx_X32(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
-	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(p32Pntr.pu32) && INRANGE(vs08B, VarSize, vs32B, varsize_t)) ;
+x32_t	xValuesFetchXxx_X32(px_t px, varform_t VarForm, varsize_t VarSize) {
+	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(px.pu32) && INRANGE(vs08B, VarSize, vs32B, varsize_t)) ;
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x32_t x32Val = { 0 } ;
 	switch(VarSize) {
 	case vs08B:
 		if (VarForm == vfUXX)
-			x32Val.u32		= *p32Pntr.pu8 ;
+			x32Val.u32	= *px.pu8 ;
 		else if (VarForm == vfIXX)
-			x32Val.i32		= *p32Pntr.pi8 ;
+			x32Val.i32	= *px.pi8 ;
 		break ;
 	case vs16B:
 		if (VarForm == vfUXX)
-			x32Val.u32		= *p32Pntr.pu16 ;
+			x32Val.u32	= *px.pu16 ;
 		else if (VarForm == vfIXX)
-			x32Val.i32		= *p32Pntr.pi16 ;
+			x32Val.i32	= *px.pi16 ;
 		break ;
 	case vs32B:
 		if (VarForm == vfUXX)
-			x32Val.u32		= *p32Pntr.pu32 ;
+			x32Val.u32	= *px.pu32 ;
 		else if (VarForm == vfIXX)
-			x32Val.i32		= *p32Pntr.pi32 ;
+			x32Val.i32	= *px.pi32 ;
 		else if (VarForm == vfFXX)
-			x32Val.f32		= *p32Pntr.pf32 ;
+			x32Val.f32	= *px.pf32 ;
 		break ;
 	case vs64B:
 		break ;
@@ -261,44 +261,44 @@ x32_t	xValuesFetchXxx_X32(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
 	return x32Val ;
 }
 
-x64_t	xValuesFetchXxx_X64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
- 	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(p32Pntr.pu32) && (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
+x64_t	xValuesFetchXxx_X64(px_t px, varform_t VarForm, varsize_t VarSize) {
+ 	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(px.pu32) && (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x64_t	x64Val  = { 0 } ;
 	switch(VarSize) {
 	case vs08B:
 		if (VarForm == vfUXX)
-			x64Val.u64		= *p32Pntr.pu8 ;
+			x64Val.u64	= *px.pu8 ;
 		else if (VarForm == vfIXX)
-			x64Val.i64		= *p32Pntr.pi8 ;
+			x64Val.i64	= *px.pi8 ;
 		break ;
 	case vs16B:
 		if (VarForm == vfUXX)
-			x64Val.u64		= *p32Pntr.pu16 ;
+			x64Val.u64	= *px.pu16 ;
 		else if (VarForm == vfIXX)
-			x64Val.i64		= *p32Pntr.pi16 ;
+			x64Val.i64	= *px.pi16 ;
 		break ;
 	case vs32B:
 		if (VarForm == vfUXX)
-			x64Val.u64		= *p32Pntr.pu32 ;
+			x64Val.u64	= *px.pu32 ;
 		else if (VarForm == vfIXX)
-			x64Val.i64		= *p32Pntr.pi32 ;
+			x64Val.i64	= *px.pi32 ;
 		else if (VarForm == vfFXX)
-			x64Val.f64		= *p32Pntr.pf32 ;
+			x64Val.f64	= *px.pf32 ;
 		break ;
 	case vs64B:
 		if (VarForm == vfUXX)
-			x64Val.u64		= *p32Pntr.pu64 ;
+			x64Val.u64	= *px.pu64 ;
 		else if (VarForm == vfIXX)
-			x64Val.i64		= *p32Pntr.pi64 ;
+			x64Val.i64	= *px.pi64 ;
 		else if (VarForm == vfFXX)
-			x64Val.f64		= *p32Pntr.pf64 ;
+			x64Val.f64	= *px.pf64 ;
 		break ;
 	}
 	return x64Val ;
 }
 
-double	dValuesFetchXxx_F64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
-	x64_t	x64Value = xValuesFetchXxx_X64(p32Pntr, VarForm, VarSize) ;
+double	dValuesFetchXxx_F64(px_t px, varform_t VarForm, varsize_t VarSize) {
+	x64_t	x64Value = xValuesFetchXxx_X64(px, VarForm, VarSize) ;
 	if (VarForm == vfUXX) {
 		return x64Value.u64 ;
 	} else if (VarForm == vfIXX) {
@@ -311,9 +311,9 @@ double	dValuesFetchXxx_F64(p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) 
 	return 0.0 ;
 }
 
-void	vValuesReportXxx(const char * pMess, p32_t p32Pntr, varform_t VarForm, varsize_t VarSize) {
-	x64_t	x64Val = xValuesFetchXxx_X64(p32Pntr, VarForm, VarSize) ;
-	pMess = pMess == NULL ? "" : pMess ;
+void	vValuesReportXxx(const char * pMess, px_t px, varform_t VarForm, varsize_t VarSize) {
+	x64_t	x64Val = xValuesFetchXxx_X64(px, VarForm, VarSize) ;
+	pMess = (pMess == NULL) ? "" : pMess ;
 	PRINT(" %s %s %s ", pMess, cvSizeName[VarSize], cvFormName[VarForm]) ;
 	switch(VarForm) {
 	case vfUXX:			PRINT("%'llu ", x64Val.u64) ;	break ;
