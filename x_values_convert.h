@@ -27,15 +27,15 @@ void	ValueConvertUnitTest(void) ;
 
 // #################################################################################################
 
-x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, varform_t VarForm, varsize_t VarSize) ;
-x64_t	xValuesUpscaleX32_X64(x32_t x32Var, varform_t VarForm) ;
-void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, varform_t VarForm, varsize_t VarSize) ;
-void	vValuesStoreF64_Xxx(double f64Val, px_t px, varform_t VarForm, varsize_t VarSize) ;
-x32_t	xValuesFetchXxx_X32(px_t px, varform_t VarForm, varsize_t VarSize) ;
-x64_t	xValuesFetchXxx_X64(px_t px, varform_t VarForm, varsize_t VarSize) ;
-double	dValuesFetchXxx_F64(px_t px, varform_t VarForm, varsize_t VarSize) ;
-void	vValuesReportXxx(const char * pMess, px_t px, varform_t VarForm, varsize_t VarSize) ;
-x64_t	xValuesScaleX64(x64_t x64Val, varform_t VarForm, varsize_t VarSize) ;
+x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, vf_e VarForm, vs_e VarSize) ;
+x64_t	xValuesUpscaleX32_X64(x32_t x32Var, vf_e VarForm) ;
+void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, vf_e VarForm, vs_e VarSize) ;
+void	vValuesStoreF64_Xxx(double f64Val, px_t px, vf_e VarForm, vs_e VarSize) ;
+x32_t	xValuesFetchXxx_X32(px_t px, vf_e VarForm, vs_e VarSize) ;
+x64_t	xValuesFetchXxx_X64(px_t px, vf_e VarForm, vs_e VarSize) ;
+double	dValuesFetchXxx_F64(px_t px, vf_e VarForm, vs_e VarSize) ;
+void	vValuesReportXxx(const char * pMess, px_t px, vf_e VarForm, vs_e VarSize) ;
+x64_t	xValuesScaleX64(x64_t x64Val, vf_e VarForm, vs_e VarSize) ;
 
 #ifdef __cplusplus
 }

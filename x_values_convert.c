@@ -111,7 +111,7 @@ uint32_t u32ScaleValue(uint32_t Val, uint32_t R1lo, uint32_t R1hi, uint32_t R2lo
 
 // #################################################################################################
 
-x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, varform_t VarForm, varsize_t VarSize) {
+x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, vf_e VarForm, vs_e VarSize) {
 	x64_t	x64Var = { 0 } ;
 	switch(VarForm) {
 	case vfUXX:
@@ -142,7 +142,7 @@ x64_t	xValuesUpscaleXxx_X64(x32_t x32Var, varform_t VarForm, varsize_t VarSize) 
 	return x64Var ;
 }
 
-x64_t	xValuesUpscaleX32_X64(x32_t x32Var, varform_t VarForm) {
+x64_t	xValuesUpscaleX32_X64(x32_t x32Var, vf_e VarForm) {
 	IF_myASSERT(debugPARAM, VarForm != vfSXX) ;
 	x64_t	x64Var = { 0 } ;
 	switch(VarForm) {
@@ -154,7 +154,7 @@ x64_t	xValuesUpscaleX32_X64(x32_t x32Var, varform_t VarForm) {
 	return x64Var ;
 }
 
-bool	xValuesVerifyForm_Size(varform_t VarForm, varsize_t VarSize) {
+bool	xValuesVerifyForm_Size(vf_e VarForm, vs_e VarSize) {
 	/* OK = vfFXX if size is 					vs32B or vs64B
 	 * OK = vfUXX if size is vs08B or vs16B or	vs32B or vs64B
 	 * OK = vfIXX if size is vs08B or vs16B or	vs32B or vs64B
@@ -162,7 +162,7 @@ bool	xValuesVerifyForm_Size(varform_t VarForm, varsize_t VarSize) {
 	return (VarForm == vfFXX && (VarSize == vs08B || VarSize == vs16B)) ? false : true ;
 }
 
-void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, varform_t VarForm, varsize_t VarSize) {
+void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, vf_e VarForm, vs_e VarSize) {
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	switch(VarSize) {
 	case vs08B:
@@ -196,7 +196,7 @@ void	vValuesStoreX64_Xxx(x64_t x64Val, px_t px, varform_t VarForm, varsize_t Var
 	}
 }
 
-void	vValuesStoreF64_Xxx(double f64Val, px_t px, varform_t VarForm, varsize_t VarSize) {
+void	vValuesStoreF64_Xxx(double f64Val, px_t px, vf_e VarForm, vs_e VarSize) {
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	switch(VarSize) {
 	case vs08B:
@@ -230,8 +230,8 @@ void	vValuesStoreF64_Xxx(double f64Val, px_t px, varform_t VarForm, varsize_t Va
 	}
 }
 
-x32_t	xValuesFetchXxx_X32(px_t px, varform_t VarForm, varsize_t VarSize) {
-	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(px.pu32) && INRANGE(vs08B, VarSize, vs32B, varsize_t)) ;
+x32_t	xValuesFetchXxx_X32(px_t px, vf_e VarForm, vs_e VarSize) {
+	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(px.pu32) && INRANGE(vs08B, VarSize, vs32B, vs_e)) ;
 	IF_myASSERT(debugPARAM, (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x32_t x32Val = { 0 } ;
 	switch(VarSize) {
@@ -261,7 +261,7 @@ x32_t	xValuesFetchXxx_X32(px_t px, varform_t VarForm, varsize_t VarSize) {
 	return x32Val ;
 }
 
-x64_t	xValuesFetchXxx_X64(px_t px, varform_t VarForm, varsize_t VarSize) {
+x64_t	xValuesFetchXxx_X64(px_t px, vf_e VarForm, vs_e VarSize) {
  	IF_myASSERT(debugPARAM, halCONFIG_inSRAM(px.pu32) && (VarForm != vfSXX) && xValuesVerifyForm_Size(VarForm, VarSize)) ;
 	x64_t	x64Val  = { 0 } ;
 	switch(VarSize) {
@@ -297,7 +297,7 @@ x64_t	xValuesFetchXxx_X64(px_t px, varform_t VarForm, varsize_t VarSize) {
 	return x64Val ;
 }
 
-double	dValuesFetchXxx_F64(px_t px, varform_t VarForm, varsize_t VarSize) {
+double	dValuesFetchXxx_F64(px_t px, vf_e VarForm, vs_e VarSize) {
 	x64_t	x64Value = xValuesFetchXxx_X64(px, VarForm, VarSize) ;
 	if (VarForm == vfUXX) {
 		return x64Value.u64 ;
@@ -311,7 +311,7 @@ double	dValuesFetchXxx_F64(px_t px, varform_t VarForm, varsize_t VarSize) {
 	return 0.0 ;
 }
 
-void	vValuesReportXxx(const char * pMess, px_t px, varform_t VarForm, varsize_t VarSize) {
+void	vValuesReportXxx(const char * pMess, px_t px, vf_e VarForm, vs_e VarSize) {
 	x64_t	x64Val = xValuesFetchXxx_X64(px, VarForm, VarSize) ;
 	pMess = (pMess == NULL) ? "" : pMess ;
 	printfx(" %s %s %s ", pMess, cvSizeName[VarSize], cvFormName[VarForm]) ;
@@ -330,7 +330,7 @@ void	vValuesReportXxx(const char * pMess, px_t px, varform_t VarForm, varsize_t 
  * @param VarSize
  * @return
  */
-x64_t	xValuesScaleX64(x64_t x64Val, varform_t VarForm, varsize_t VarSize) {
+x64_t	xValuesScaleX64(x64_t x64Val, vf_e VarForm, vs_e VarSize) {
 	x64_t	x64Res = { 0 } ;
 	if (VarSize == vs64B) {
 		x64Res = x64Val ;
