@@ -346,13 +346,16 @@ x64_t	xValuesScaleX64(x64_t x64Val, vf_e VarForm, vs_e VarSize) {
 	} else if (VarForm == vfIXX) {
 		switch (VarSize) {
 		case vs08B:
-			x64Res.x8[0].i8	= INRANGE(-128, x64Val.i64, 127, int64_t) ? x64Val.i64 : x64Val.i64 > 0LL ? x64Val.i64 % 127 : x64Val.i64 % 128 ;
+			x64Res.x8[0].i8	= INRANGE(-128, x64Val.i64, 127, int64_t) ? x64Val.i64
+							: (x64Val.i64 > 0LL) ? x64Val.i64 % 127 : x64Val.i64 % 128 ;
 			break ;
 		case vs16B:
-			x64Res.x16[0].i16	= INRANGE(-32768, x64Val.i64, 32767, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 32767 : x64Val.i64 % 32768 ;
+			x64Res.x16[0].i16	= INRANGE(-32768, x64Val.i64, 32767, int64_t) ? x64Val.i64
+								: (x64Val.i64 > 0) ? x64Val.i64 % 32767 : x64Val.i64 % 32768 ;
 			break ;
 		case vs32B:
-			x64Res.x32[0].i32	= INRANGE(-2147483648, x64Val.i64, 2147483647, int64_t) ? x64Val.i64 : x64Val.i64 > 0 ? x64Val.i64 % 2147483647 : x64Val.i64 % 2147483648 ;
+			x64Res.x32[0].i32	= INRANGE(-2147483648, x64Val.i64, 2147483647, int64_t) ? x64Val.i64
+								: (x64Val.i64 > 0) ? (x64Val.i64 % 2147483647) : (x64Val.i64 % 2147483648) ;
 			break ;
 		default:
 			IF_myASSERT(debugPARAM, 0) ;
